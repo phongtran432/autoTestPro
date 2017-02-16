@@ -52,9 +52,17 @@ public class App
     	
     	loginBtn.click();
         
+    	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    	
+    	WebElement newBtn;
+    	newBtn = driver.findElement(By.xpath("//*[@id='sites-list']/div/div/div[1]/a"));
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	System.out.print("Debug: " + newBtn.getText());
+    	
+    	newBtn.click();
     	
     	
-    	String filePath = "fileInput/ocTestData.xlsx";
+    	/*String filePath = "fileInput/ocTestData.xlsx";
     	FileInputStream inputStream = new FileInputStream(new File(filePath));
     	Workbook workbook = new XSSFWorkbook(inputStream);
     	Sheet firstSheet = workbook.getSheetAt(0);
@@ -88,7 +96,9 @@ public class App
     	FileOutputStream out = new FileOutputStream(new File("outputFile.xlsx"));
         workbook.write(out);
         out.close();
-        System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");
+        System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");*/
+    	
+    	
     	/*WebDriver driver;
     	System.setProperty("webdriver.gecko.driver","driver//geckodriver.exe");
     	driver = new FirefoxDriver();
