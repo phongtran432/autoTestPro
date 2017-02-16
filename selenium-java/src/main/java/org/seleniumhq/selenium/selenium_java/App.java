@@ -3,6 +3,7 @@ package org.seleniumhq.selenium.selenium_java;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +31,29 @@ public class App
 {
     public static void main( String[] args ) throws InterruptedException, IOException
     {
+    	WebDriver driver;
+    	System.setProperty("webdriver.gecko.driver","driver//geckodriver.exe");
+    	driver = new FirefoxDriver();
+        driver.get("http://ec2-35-162-242-69.us-west-2.compute.amazonaws.com");
+        
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        
+        String userName = "admin";
+        String passWord = "sov@2016";
+        
+        WebElement userTxtBox, passTxtBox, loginBtn;
+        
+        userTxtBox = driver.findElement(By.id("login-username"));
+        passTxtBox = driver.findElement(By.id("login-password"));
+    	loginBtn = driver.findElement(By.xpath("//input[@class='btn btn-primary pull-right']"));
+    	
+    	userTxtBox.sendKeys(userName);
+    	passTxtBox.sendKeys(passWord);
+    	
+    	loginBtn.click();
+        
+    	
+    	
     	String filePath = "fileInput/ocTestData.xlsx";
     	FileInputStream inputStream = new FileInputStream(new File(filePath));
     	Workbook workbook = new XSSFWorkbook(inputStream);
@@ -60,6 +84,11 @@ public class App
     	}
     	
     	System.out.print("Total row: " + countRow);
+    	
+    	FileOutputStream out = new FileOutputStream(new File("outputFile.xlsx"));
+        workbook.write(out);
+        out.close();
+        System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");
     	/*WebDriver driver;
     	System.setProperty("webdriver.gecko.driver","driver//geckodriver.exe");
     	driver = new FirefoxDriver();
