@@ -1,0 +1,3 @@
+address:http://ec2-35-162-242-69.us-west-2.compute.amazonaws.com
+username:admin
+password:sov@2016
