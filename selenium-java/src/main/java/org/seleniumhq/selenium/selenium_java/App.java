@@ -18,6 +18,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import junit.framework.Assert;
 
@@ -51,15 +54,31 @@ public class App
     	passTxtBox.sendKeys(passWord);
     	
     	loginBtn.click();
-        
-    	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     	
     	WebElement newBtn;
     	newBtn = driver.findElement(By.xpath("//*[@id='sites-list']/div/div/div[1]/a"));
-    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    	System.out.print("Debug: " + newBtn.getText());
     	
+    	/*Actions actions = new Actions(driver);
+    	actions.moveToElement(newBtn).build().perform();*/
+    	
+    	Thread.sleep(5000);
     	newBtn.click();
+    	
+    	/*WebDriverWait wait = new WebDriverWait(driver, 15);
+    	wait.until(ExpectedConditions.elementToBeClickable(newBtn)).click();*/
+    	
+    	/*WebDriverWait wait = new WebDriverWait(driver, 15);
+    	wait.until(ExpectedConditions.elementToBeClickable(newBtn));
+    	
+    	if(newBtn.isDisplayed()){
+    		System.out.print("Add button displayed");
+    	}else{
+    		wait.until(ExpectedConditions.elementToBeClickable(newBtn));
+    		System.out.print("wait for add button can click......");
+    	}
+*/    	
+    	
+    	System.out.println("Debug: " + newBtn.getText());
     	
     	
     	/*String filePath = "fileInput/ocTestData.xlsx";
