@@ -43,6 +43,7 @@ public class App
         
         String userName = "admin";
         String passWord = "sov@2016";
+        String testt;
         
         WebElement userTxtBox, passTxtBox, loginBtn;
         
