@@ -41,9 +41,43 @@ public class App
         
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         
-        String userName = "admin";
+        WebElement textTitle;
+        textTitle = driver.findElement(By.xpath("//a[text()='Onion Crawler']"));
+        
+        System.out.println("Font-size of title get from UI: " + textTitle.getCssValue("font-size"));
+        
+        String filePath = "fileInput/pageDesign.xlsx";
+    	FileInputStream inputStream = new FileInputStream(new File(filePath));
+    	Workbook workbook = new XSSFWorkbook(inputStream);
+    	Sheet firstSheet = workbook.getSheetAt(0);
+    	Iterator<Row> iterator = firstSheet.iterator();
+    	int countRow = 0;
+    	
+    	while (iterator.hasNext()){
+    		Row nextRow = iterator.next();
+    		Iterator<Cell>cellIterator = nextRow.cellIterator();
+    		
+    		
+    		while(cellIterator.hasNext()){
+    			Cell cell = cellIterator.next();
+    			
+    			switch (cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					if(cell.getStringCellValue().equals("font size"))
+						System.out.print("Defined font size: " + cellIterator.next().getStringCellValue());
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					System.out.print(cell.getNumericCellValue());
+					break;
+				}
+    		}
+    		System.out.println("");
+    		countRow++;
+    	}
+        
+        
+        /*String userName = "admin";
         String passWord = "sov@2016";
-        String testt;
         
         WebElement userTxtBox, passTxtBox, loginBtn;
         
@@ -57,13 +91,13 @@ public class App
     	loginBtn.click();
     	
     	WebElement newBtn;
-    	newBtn = driver.findElement(By.xpath("//*[@id='sites-list']/div/div/div[1]/a"));
+    	newBtn = driver.findElement(By.xpath("//*[@id='sites-list']/div/div/div[1]/a"));*/
     	
     	/*Actions actions = new Actions(driver);
     	actions.moveToElement(newBtn).build().perform();*/
     	
-    	Thread.sleep(5000);
-    	newBtn.click();
+    	/*Thread.sleep(5000);
+    	newBtn.click();*/
     	
     	/*WebDriverWait wait = new WebDriverWait(driver, 15);
     	wait.until(ExpectedConditions.elementToBeClickable(newBtn)).click();*/
@@ -79,7 +113,7 @@ public class App
     	}
 */    	
     	
-    	System.out.println("Debug: " + newBtn.getText());
+    	//System.out.println("Debug: " + newBtn.getText());
     	
     	
     	/*String filePath = "fileInput/ocTestData.xlsx";
