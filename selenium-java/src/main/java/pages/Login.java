@@ -39,4 +39,6 @@ public class Login {
         //Click Login button
         this.clickLogin();        
     }
+    
+    String debugOne;
 }
