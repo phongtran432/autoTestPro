@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 
@@ -24,7 +25,10 @@ public class sampleOne {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         By primaryButton = By.xpath("//*[@id='main']/main/div[3]/div[1]/div/div[2]/p/button[text()='Primary Button']");
         
-        Actions builder = new Actions(driver);
+        /***
+         * get CSS Attribute when hover
+         */
+        /*Actions builder = new Actions(driver);
         
         WebElement element = driver.findElement(By.xpath("//*[@id='main']/main/div[3]/div[1]/div/div[2]/div[1]/button[1]"));
 
@@ -33,7 +37,36 @@ public class sampleOne {
         String bgColor = element.getCssValue("background-color");
 
         System.out.println("After hover: " + bgColor);
-    	
+         */
+        
+        /***
+         * get CSS Attribute when focus
+         */
+       /*  
+        WebElement element = driver.findElement(primaryButton);
+        
+        element.click();   
+
+        String bgColor = element.getCssValue("background-color");
+
+        System.out.println("Focus: " + bgColor);
+        */
+        
+        /***
+         * get CSS Attribute when active
+         */
+        WebElement element = driver.findElement(primaryButton);
+        
+        Actions action = new Actions(driver);
+        
+        action.clickAndHold(element).perform();
+
+        String bgColor = element.getCssValue("background-color");
+
+        System.out.println("Active: " + bgColor);
+       
+        action.click(element).perform();
+        
 	}
 
 }
