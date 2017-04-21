@@ -31,12 +31,9 @@ public class readExcelFile {
     	Workbook workbook = new XSSFWorkbook(inputStream);
     	Sheet sheet = workbook.getSheet(sheetName);
     	Iterator<Row> iterator = sheet.iterator();
-    	System.out.println("1/ Debug iterator: " + iterator.toString());
     	
     	while (iterator.hasNext()){
-    		System.out.println("2/ Debug iterator hasNext: " + iterator.toString());
     		Row nextRow = iterator.next();
-    		System.out.println("3/ Debug iterator hasNext: " + nextRow.cellIterator().toString());
     		Iterator<Cell>cellIterator = nextRow.cellIterator();
     		Cell firtCell = cellIterator.next();
     		if(rowName.equals(firtCell.getStringCellValue().trim())){
