@@ -17,9 +17,10 @@ public class interactivePosition {
 	}
 	
 	public String getBackgroundColorNormal(){
-		backgroundColorActive = driver.findElement(primaryButton).getCssValue("background-color");
+		/*backgroundColorActive = driver.findElement(primaryButton).getCssValue("background-color");
 		objConvert = new convertColorCode();
-		return objConvert.convertColorToHex(backgroundColorActive);
+		return objConvert.convertColorToHex(backgroundColorActive);*/
+		return "";
 	}
 	
 	public String getBackgroundColorHover(){

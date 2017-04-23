@@ -29,7 +29,16 @@ public class sampleOne {
         
         String title = driver.findElement(By.xpath("//*[@id='main']//table//th/div[text()='Title']")).getCssValue("color");
         
-        System.out.println("The result: " + title);
+        String fontOne = "\"Open Sans\", sans-serif";
+        String fontTwo = "Open Sans";
+        System.out.println("Font: "+ fontOne);
+        System.out.println("Font: "+ fontTwo);
+        
+        if(fontOne.contains(fontTwo)){
+        	System.out.println("Font: OK");	
+        }
+        
+        
         
         /***
          * get CSS Attribute when hover

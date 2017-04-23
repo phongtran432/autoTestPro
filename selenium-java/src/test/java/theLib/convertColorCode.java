@@ -2,8 +2,13 @@ package theLib;
 
 public class convertColorCode {
 	String hexColor;
+	String colorCode;
 	
-	public String convertColorToHex(String colorCode){
+	public convertColorCode(String colorCode){
+		this.colorCode = colorCode;
+	}
+	
+	public String convertColorToHex(){
 		colorCode = colorCode.trim().toLowerCase();
 		String[] numbers;
 		if(colorCode.contains("a")){

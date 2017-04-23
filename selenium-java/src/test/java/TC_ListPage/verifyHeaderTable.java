@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -37,6 +38,9 @@ public class verifyHeaderTable {
     String NumberRow = "NUMBER";
 	
     readExcelFile objExcel;
+    readExcelFile objTitle;
+    readExcelFile objProduct;
+    readExcelFile objNumber;
     
     @BeforeTest
     public void setUp(){
@@ -47,12 +51,42 @@ public class verifyHeaderTable {
     }
     
    @Test(priority=0)
-   public void verify_Header() throws IOException{
+   public void verify_Title() throws IOException{
 	   objListPage = new listPage(driver);
-	   System.out.println("Result: " + objListPage.getTitleFontName());
-	   objExcel = new readExcelFile(expectationFilePath, headerTableSheet, titleRow);
-	   System.out.println("Row value: " + objExcel.getRowValues());
+	   String fonFamily = objListPage.getTitleFontFamily();
+	   String fontSize = objListPage.getTitleFontSize();
+	   String fontColor = objListPage.getTitleFontColor();
+	   String sortIconColor = objListPage.getSortIconColor(); 
 	   
+	   System.out.println("Title Font Color: " + fontColor);
+	   System.out.println("Sort icon color: " + sortIconColor);
 	   
+	   objTitle = new readExcelFile(expectationFilePath, headerTableSheet, titleRow);
+	   String fontFamilyExpectation = objTitle.getFontFamily(objTitle.getRowValues());
+	   String fontSizeExpectation = objTitle.getFontSize(objTitle.getRowValues());
+	   String fontColorExpectation = objTitle.getFontColor(objTitle.getRowValues());
+	   String sortIconColorExpectation = objTitle.getSortIconColor(objTitle.getRowValues());
+	   
+	   System.out.println("Title Font Color expectation: " + fontColorExpectation);
+	   System.out.println("Sort icon color expectation: " + sortIconColorExpectation);
+	   
+	   System.out.println("Font fonFamily: " + fonFamily);
+	   System.out.println("Font fontFamilyExpectation: " + fontFamilyExpectation);
+	   
+	   if(fonFamily.contains(fontFamilyExpectation)){
+		   if(fontSize.equals(fontSizeExpectation)){
+			   System.out.println("Test Case1: Passed");
+		   }
+	   }else{
+		   System.out.println("Test Case: Failed");}
+	   
+	   if(fontColor.toLowerCase().equals(fontColorExpectation.toLowerCase())){
+		   System.out.println("Test Case2: Passed");
+	   }
+   }
+   
+   @AfterMethod
+   public void afterMethod(){
+	   driver.quit();
    }
 }
